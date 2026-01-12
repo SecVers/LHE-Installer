@@ -99,6 +99,22 @@ namespace LHEInstaller
 
             AutoStart.EnableAutoStart();
 
+            try
+            {
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = targetPath,
+                    Verb = "runas",
+                    UseShellExecute = true
+                };
+
+                Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+
             InstallStatus.Text = "Installation Complete!";
             MessageBox.Show("Installation completed successfully!");
         }
